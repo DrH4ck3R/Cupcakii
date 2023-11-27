@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}Compra Realizada com Sucesso{% endblock title %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Compra Realizada com Sucesso!</h2>
+            <p>Agradecemos por sua compra. Seu pedido foi processado com sucesso.</p>
+            <p>Detalhes do Pedido:</p>
+            <ul>
+                <li>Número do Pedido: {{ numero_pedido }}</li>
+                <li>Total: R$ {{ total_compra }}</li>
+                <!-- Adicione outros detalhes do pedido conforme necessário -->
+            </ul>
+            <p>Entraremos em contato em breve com as informações de entrega.</p>
+            <a href="{% url 'pagina_inicial' %}" class="btn btn-primary">Voltar para a Página Inicial</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

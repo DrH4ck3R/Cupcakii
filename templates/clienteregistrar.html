@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}Cadastrar Clientes{% endblock title %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 mx-auto">
+            <h4>Cadastrar Clientes</h4>
+            <form action="" method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button class="btn btn-sm btn-success">Cadastrar Cliente</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

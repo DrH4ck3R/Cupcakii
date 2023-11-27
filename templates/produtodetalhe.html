@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block title %}{{produto.titulo}}{% endblock title %}
+
+{% block content %}
+
+<div class="container">
+    
+       <!--<h4>Produto:{{produto.titulo}}</h4><hr>--> 
+
+<div class="row">
+        <div class="col-md-6">
+                <img src="{{produto.imagem.url}}" alt=""class="img-fluid" >
+        </div>
+
+        <div class="col-md-6">
+                <h3>{{ produto.titulo }}</h3>
+                <h4>Categoria: {{ produto.categoria }}</h4>
+                <h5>Preço: R$ {{ produto.preco_mercado }}</h5> 
+                <p>Descrição: {{ produto.descricao }}</p>
+                <a href="{% url 'lojaapp:addcarro' produto.id %}" class="btn btn-success btn-lg">comprar</a><hr>
+                
+            </div>
+            
+
+</div>
+           
+            
+</div>
+    
+{% endblock %}
+

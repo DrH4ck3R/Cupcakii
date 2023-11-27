@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% block title %}Home{% endblock title %}
+
+{% block content %}
+
+<style>
+    .maid-cafe-text {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-size: 18px;
+        color: #5C4136; 
+        line-height: 1.5;
+    }
+
+    .cupcake-heading {
+        font-family: 'Pacifico', cursive;
+        font-size: 26px;
+        color: #D980FA; 
+        margin-bottom: 15px;
+    }
+</style>
+
+<div class="container">
+    <h1 class="cupcake-heading text-center">BEM-VINDO </h1>
+    <hr>
+
+    <div class="row">
+        <div class="col-md-6 order-md-1 text-center">
+            <h2 class="cupcake-heading">Nossos Cupcakes </h2>
+            <p class="maid-cafe-text">
+                Explore nossa seleção de cupcakes artesanais, meticulosamente preparados para proporcionar uma explosão de sabores e texturas. Cada confeiteiro do Born N' Cafe é um mágico culinário, transformando ingredientes simples em delícias irresistíveis.
+            </p>
+            <hr>
+        </div>
+        <div class="col-md-6 order-md-2">
+            <div id="cupcakeCarousel" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                    {% for p in produto_list|slice:":3" %}
+                        <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                            <img src="{{ p.imagem.url }}" class="d-block w-100 img-fluid" alt="{{ p.titulo }}" style="object-fit: cover; margin-right: 20px;">
+                            <div class="carousel-caption d-none d-md-block">
+                                <h5 class="card-title" style="color: black; text-decoration: none; position: relative; display: inline-block;">
+                                    <a href="{% url 'lojaapp:produtosdetalhe' p.slug %}" style="color: black; text-decoration: none;">
+                                        <span style="background-color: pink; padding: 2px 5px; border: 1px solid black; border-radius: 5px; text-shadow: 2px 2px black;">
+                                            {{ p.titulo }}
+                                        </span>
+                                    </a>
+                                </h5>
+                                <p style="color: black;"><strong>Produto Mais Vendido</strong></p>
+                                <a href="{% url 'lojaapp:addcarro' p.id %}" class="btn btn-success btn-lg">
+                                    <i class="fas fa-shopping-cart"></i> Comprar
+                                </a>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+                <a class="carousel-control-prev" href="#cupcakeCarousel" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Anterior</span>
+                </a>
+                <a class="carousel-control-next" href="#cupcakeCarousel" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Próximo</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

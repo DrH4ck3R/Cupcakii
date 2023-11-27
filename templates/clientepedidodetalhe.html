@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load humanize %}
+
+{% block title %}Detalhes do Pedido{% endblock title %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 mx-auto">
+            <h3>Detalhes do Pedido</h3>
+            <hr>
+            <p><span class="font-weight-bold"></span><samp>ProdutoID:   </samp>Pedido {{pedido_obj.id}}<p></samp>
+            <p><span class="font-weight-bold"></span><samp>Efetuado Compra por:   </samp> {{pedido_obj.ordenando_por}}<p></samp>
+            <p><span class="font-weight-bold"></span><samp>Status do Pedido:   </samp> {{pedido_obj.pedido_status}}<p></samp>
+            <p><span class="font-weight-bold"></span><samp>Data:   </samp> {{pedido_obj.criado_em}}<p></samp>
+            <p><span class="font-weight-bold"></span><samp>Endereço a Enviar:   </samp> {{pedido_obj.endereco_envio}}<p></samp>
+            <p><span class="font-weight-bold"></span><samp>Telefone:   </samp> {{pedido_obj.telefone}}<p></samp>
+            <p><span class="font-weight-bold"></span><samp>Email:   </samp> {{pedido_obj.email}}<p></samp>
+            <hr>
+            <h4>Itens</h4>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Codigo</th>
+                        <th>item</th>
+                        <th>Quantidade</th>
+                        <th>Subtotal</th>
+                        
+
+                    </tr>
+
+                </thead>
+                <tbody>
+                    {% for cp in pedido_obj.carro.carroproduto_set.all%}
+                    <tr>
+                        <td>{{forloop.counter}}</td>
+                        <td>{{cp.produto.titulo}}</td>
+                        <td>{{cp.quantidade}}</td>
+                        <td>{{cp.subtotal}}</td>
+                    </tr>
+
+                    {%endfor%}
+                    <tr>
+                        <th colspan="4" class="text-right">Valor Total:</th>
+
+                        <th>R$ {{pedido_obj.total|intcomma}}</th>
+                    </tr>
+
+                </tbody>
+            </table>
+            
+
+
+                
+        
+        </div>
+    </div>
+</div>    
+     
+{% endblock %}

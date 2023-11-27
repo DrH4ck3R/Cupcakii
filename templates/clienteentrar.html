@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}Entrar{% endblock title %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 mx-auto">
+            <h4>Entrar</h4>
+            <form action="" method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button class="btn btn-sm btn-success">Entrar</button>
+                
+            </form>
+            <p>Não é cadastrado? Clique <a href="{% url 'lojaapp:clienteregistrar' %}{% if request.GET.next %}?next={{ request.GET.next }}{% endif %}">Aqui</a></p>
+
+
+            {% if error %}
+                <p style="color: red;">{{ error }}</p>
+            {% endif %}
+            
+
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+
+
